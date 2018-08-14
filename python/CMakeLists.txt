@@ -32,7 +32,7 @@ endif()
 GR_PYTHON_INSTALL(
     FILES
     __init__.py
-    DESTINATION ${GR_PYTHON_DIR}/vcc
+    qt_hex_text.py DESTINATION ${GR_PYTHON_DIR}/vcc
 )
 
 ########################################################################

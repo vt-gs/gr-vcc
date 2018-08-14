@@ -31,4 +31,5 @@ except ImportError:
 	pass
 
 # import any pure python here
+from qt_hex_text import qt_hex_text
 #
