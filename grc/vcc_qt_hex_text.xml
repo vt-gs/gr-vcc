@@ -5,10 +5,10 @@
   <category>[vcc]</category>
   <import>import vcc</import>
   <make>#set $win = 'self._%s_win'%$id
-    pyqt.text_output()
-    self._$(id)_win = self.$(id);
-    $(gui_hint()($win))
-  </make>
+vcc.qt_hex_text()
+self._$(id)_win = self.$(id);
+$(gui_hint()($win))
+</make>
 
   <param>
     <name>GUI Hint</name>

@@ -31,8 +31,9 @@ from gnuradio import gr
 from PyQt4 import Qt, QtCore, QtGui
 import pmt
 import binascii
+import datetime
 
-class qt_hex_text(gr.sync_block):
+class qt_hex_text(gr.sync_block,  QtGui.QTextEdit):
     """
     prints the hex string using binascii.hexlify
     """
@@ -53,10 +54,12 @@ class qt_hex_text(gr.sync_block):
                        QtCore.SLOT("append(QString)"))
 
     def handle_input(self, msg):
+        ts = datetime.datetime.utcnow().strftime("%Y%m%d %H:%M:%S.%f") + " UTC"
         vec = pmt.cdr(msg)
         nvec = pmt.to_python(vec)
         #s = str(nvec.tostring())  #O'Shea's original line
-        s = binascii.hexlify(nvec)
+        hex_string = binascii.hexlify(nvec)
+        s = " | ".join([ts, hex_string])
         self.emit(QtCore.SIGNAL("updateText(QString)"), s)
 
     def work(self, input_items, output_items):
