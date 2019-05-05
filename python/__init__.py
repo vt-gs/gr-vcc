@@ -32,4 +32,5 @@ except ImportError:
 
 # import any pure python here
 from qt_hex_text import qt_hex_text
+from meta_to_json import meta_to_json
 #

@@ -19,5 +19,6 @@
 # Boston, MA 02110-1301, USA.
 
 install(FILES
-    vcc_qt_hex_text.xml DESTINATION share/gnuradio/grc/blocks
+    vcc_qt_hex_text.xml
+    vcc_meta_to_json.xml DESTINATION share/gnuradio/grc/blocks
 )

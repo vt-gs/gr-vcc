@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<block>
+  <name>meta_to_json</name>
+  <key>vcc_meta_to_json</key>
+  <category>[vcc]</category>
+  <import>import vcc</import>
+  <make>vcc.meta_to_json()</make>
+    <sink>
+        <name>in</name>
+        <type>message</type>
+        <optional>1</optional>
+    </sink>
+
+    <source>
+        <name>out</name>
+        <type>message</type>
+        <optional>1</optional>
+    </source>
+</block>
