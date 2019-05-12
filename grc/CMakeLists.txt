@@ -20,5 +20,7 @@
 
 install(FILES
     vcc_qt_hex_text.xml
-    vcc_meta_to_json.xml DESTINATION share/gnuradio/grc/blocks
+    vcc_meta_to_json.xml
+    vcc_burst_snr.xml
+    vcc_burst_cfo_est_gmsk.xml DESTINATION share/gnuradio/grc/blocks
 )

@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<block>
+  <name>CFO Estimate, GMSK</name>
+  <key>vcc_burst_cfo_est_gmsk</key>
+  <category>[vcc]</category>
+  <import>import vcc</import>
+  <make>vcc.burst_cfo_est_gmsk($Fs)</make>
+  <param>
+      <name>Sample Rate</name>
+      <key>Fs</key>
+      <value>250000</value>
+      <type>float</type>
+  </param>
+
+  <sink>
+      <name>in</name>
+      <type>message</type>
+      <optional>1</optional>
+  </sink>
+
+  <source>
+      <name>out</name>
+      <type>message</type>
+      <optional>1</optional>
+  </source>
+
+  <source>
+      <name>corrected</name>
+      <type>message</type>
+      <optional>1</optional>
+  </source>
+</block>

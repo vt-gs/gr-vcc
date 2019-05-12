@@ -33,7 +33,9 @@ GR_PYTHON_INSTALL(
     FILES
     __init__.py
     qt_hex_text.py
-    meta_to_json.py DESTINATION ${GR_PYTHON_DIR}/vcc
+    meta_to_json.py
+    burst_snr.py
+    burst_cfo_est_gmsk.py DESTINATION ${GR_PYTHON_DIR}/vcc
 )
 
 ########################################################################

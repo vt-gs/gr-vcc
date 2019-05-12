@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<block>
+  <name>Burst SNR</name>
+  <key>vcc_burst_snr</key>
+  <category>[vcc]</category>
+  <import>import vcc</import>
+  <make>vcc.burst_snr($length)</make>
+  <callback>set_length($length)</callback>
+  <param>
+      <name>Average Length</name>
+      <key>length</key>
+      <value>100</value>
+      <type>int</type>
+  </param>
+
+  <sink>
+      <name>in</name>
+      <type>message</type>
+      <optional>1</optional>
+  </sink>
+
+  <source>
+      <name>out</name>
+      <type>message</type>
+      <optional>1</optional>
+  </source>
+</block>
