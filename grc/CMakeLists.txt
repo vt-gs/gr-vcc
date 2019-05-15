@@ -17,10 +17,12 @@
 # along with GNU Radio; see the file COPYING.  If not, write to
 # the Free Software Foundation, Inc., 51 Franklin Street,
 # Boston, MA 02110-1301, USA.
-
 install(FILES
     vcc_qt_hex_text.xml
     vcc_meta_to_json.xml
     vcc_burst_snr.xml
-    vcc_burst_cfo_est_gmsk.xml DESTINATION share/gnuradio/grc/blocks
+    vcc_burst_cfo_est_gmsk.xml
+    vcc_hdlc_deframer2.xml
+    vcc_trigger_timestamp_pdu.xml
+    vcc_vstp_aggregator_simple.xml DESTINATION share/gnuradio/grc/blocks
 )

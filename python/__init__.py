@@ -35,4 +35,11 @@ from qt_hex_text import qt_hex_text
 from meta_to_json import meta_to_json
 from burst_snr import burst_snr
 from burst_cfo_est_gmsk import burst_cfo_est_gmsk
+from hdlc_deframer2 import hdlc_deframer2
+from trigger_timestamp_pdu import trigger_timestamp_pdu
+from vstp_aggregator_simple import vstp_aggregator_simple
+
+
+
+
 #

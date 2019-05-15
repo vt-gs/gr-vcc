@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<block>
+  <name>Trigger Timestamp</name>
+  <key>vcc_trigger_timestamp_pdu</key>
+  <category>[vcc]</category>
+  <import>import vcc</import>
+  <make>vcc.trigger_timestamp_pdu(threshold=$threshold)</make>
+  <callback>set_threshold($threshold)</callback>
+  <param>
+    <name>Threshold</name>
+    <key>threshold</key>
+    <value>0</value>
+    <type>float</type>
+  </param>
+  <sink>
+    <name>in</name>
+    <type>float</type>
+  </sink>
+  <source>
+    <name>ts</name>
+    <type>message</type>
+    <optional>1</optional>
+  </source>
+</block>

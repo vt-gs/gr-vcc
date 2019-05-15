@@ -4,13 +4,20 @@
   <key>vcc_burst_snr</key>
   <category>[vcc]</category>
   <import>import vcc</import>
-  <make>vcc.burst_snr($length)</make>
+  <make>vcc.burst_snr($length, $sps)</make>
   <callback>set_length($length)</callback>
+  <callback>set_sps($sps)</callback>
   <param>
       <name>Average Length</name>
       <key>length</key>
       <value>100</value>
       <type>int</type>
+  </param>
+  <param>
+      <name>Samples Per Symbol</name>
+      <key>sps</key>
+      <value>samps_per_symb</value>
+      <type>float</type>
   </param>
 
   <sink>

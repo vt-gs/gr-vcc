@@ -30,14 +30,21 @@ import json,time,os,pmt,binascii
 class burst_snr(gr.sync_block):
     """
     Computes log scale SNR of burst
-      'Average Length' is the number of samples for the running average, should be less than 100.
+      'Average Length' is the number of samples for the running average,
+      should be less than 100. Applies coorection factor based on samples
+      per symbol since we are computing SNR on raw samples before symbol
+      recovery.
+
+      sps = samp_rate / baud
+      Simple correction ->  SNR = SNR + 10log10(sps)
     """
-    def __init__(self,length=100):
+    def __init__(self,length=100, sps=1):
         gr.sync_block.__init__(self,
             name="burst_snr",
             in_sig=[],
             out_sig=[])
         self.length = length
+        self.sps = sps
         self.message_port_register_in(pmt.intern('in'))
         self.set_msg_handler(pmt.intern('in'), self.handler)
         self.message_port_register_out(pmt.intern('out'))
@@ -47,6 +54,9 @@ class burst_snr(gr.sync_block):
 
     def set_length(self, length):
         self.length = length
+
+    def set_sps(self, sps):
+        self.sps = sps
 
     def handler(self, pdu):
         meta = pmt.car(pdu);
@@ -70,6 +80,8 @@ class burst_snr(gr.sync_block):
         #compute log scale snr [dB]
         #already have power of 2 from x_2 calc, so 10log10(snr)
         snr = 10 * numpy.log10(max_avg / min_avg)
+        #Correction ratio based on samples per symbol
+        snr = snr + 10*numpy.log10(self.sps)
         #add snr to metadata
         meta = pmt.dict_add(meta, pmt.intern("snr"), pmt.from_double(snr));
 

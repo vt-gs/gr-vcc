@@ -35,7 +35,12 @@ GR_PYTHON_INSTALL(
     qt_hex_text.py
     meta_to_json.py
     burst_snr.py
-    burst_cfo_est_gmsk.py DESTINATION ${GR_PYTHON_DIR}/vcc
+    burst_cfo_est_gmsk.py
+    kiss.py
+    hdlc.py
+    hdlc_deframer2.py
+    trigger_timestamp_pdu.py
+    vstp_aggregator_simple.py DESTINATION ${GR_PYTHON_DIR}/vcc
 )
 
 ########################################################################

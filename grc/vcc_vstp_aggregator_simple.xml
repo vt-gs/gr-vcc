@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<block>
+  <name>VSTP Aggregator, Simple</name>
+  <key>vcc_vstp_aggregator_simple</key>
+  <category>[vcc]</category>
+  <import>import vcc</import>
+  <make>vcc.vstp_aggregator_simple(fc=$fc, l_type=$l_type, d_type=$d_type)</make>
+  <callback>set_center_freq($fc)</callback>
+  <param>
+    <name>Link Type</name>
+    <key>l_type</key>
+    <value>"downlink"</value>
+    <type>string</type>
+  </param>
+  <param>
+    <name>Decode Type</name>
+    <key>d_type</key>
+    <value>"live"</value>
+    <type>string</type>
+  </param>
+  <param>
+    <name>Center Frequency [Hz]</name>
+    <key>fc</key>
+    <value>0</value>
+    <type>float</type>
+  </param>
+  <sink>
+      <name>meta</name>
+      <type>message</type>
+      <optional>1</optional>
+  </sink>
+  <sink>
+      <name>raw</name>
+      <type>message</type>
+      <optional>1</optional>
+  </sink>
+
+  <source>
+      <name>out</name>
+      <type>message</type>
+      <optional>1</optional>
+  </source>
+</block>
