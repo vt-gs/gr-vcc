@@ -40,7 +40,10 @@ GR_PYTHON_INSTALL(
     hdlc.py
     hdlc_deframer2.py
     trigger_timestamp_pdu.py
-    vstp_aggregator_simple.py DESTINATION ${GR_PYTHON_DIR}/vcc
+    vstp_aggregator_simple.py
+    burst_extract_fc.py
+    burst_scramble_bb.py
+    burst_nrzi_encode.py DESTINATION ${GR_PYTHON_DIR}/vcc
 )
 
 ########################################################################

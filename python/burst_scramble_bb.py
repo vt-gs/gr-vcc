@@ -25,37 +25,37 @@
 
 import numpy
 from gnuradio import gr
+from gnuradio.digital import lfsr
 import pmt
-import datetime
 
-class trigger_timestamp_pdu(gr.sync_block):
+class burst_scramble_bb(gr.sync_block):
     """
-    docstring for block trigger_timestamp_pdu
+    docstring for block burst_scramble_bb
     """
-    def __init__(self, threshold=0.0):
+    def __init__(self,mask,seed,len):
         gr.sync_block.__init__(self,
-            name="trigger_timestamp_pdu",
-            in_sig=[numpy.float32],
+            name="burst_scramble_bb",
+            in_sig=[],
             out_sig=[])
+        self.message_port_register_in(pmt.intern('in'))
+        self.set_msg_handler(pmt.intern('in'), self.handler)
+        self.message_port_register_out(pmt.intern('out'))
+        self.lfsr = lfsr(mask,seed,len)
 
-        self.threshold = threshold
-        self.message_port_register_out(pmt.intern('ts'))
-
-    def set_threshold(self, threshold):
-        self.threshold = threshold
 
     def work(self, input_items, output_items):
-        in0 = input_items[0]
-        #out = output_items[0]
-        idx = numpy.argmax(in0>self.threshold)
-        if idx > 0: #triggered
-            abs_idx = self.nitems_read(0) + idx
-            #print "Triggered!", abs_idx
-            ts = datetime.datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%S.%fZ")
-            #meta = pmt.cons(pmt.PMT_NIL, pmt.init_u8vector(len(buff), buff))
-            #meta = pmt.cons(pmt.intern("timestamp"), pmt.init_u8vector(len(ts), bytearray(ts)))
-            meta = pmt.cons(pmt.intern("timestamp"), pmt.intern(ts))
+        assert(false)
 
-            self.message_port_pub(pmt.intern('ts'), meta)
-        return len(input_items[0])
-        #return len(in[0])
+    def handler(self, msg_pmt):
+        msg = pmt.cdr(msg_pmt)
+        if not pmt.is_u8vector(msg):
+            print "[ERROR] Received invalid message type. Expected u8vector"
+            return
+        data = list(pmt.u8vector_elements(msg))
+        scram = []
+        print len(data)
+        for bit in data:
+            scram.append(self.lfsr.next_bit_scramble(bit))
+        self.message_port_pub(pmt.intern('out'), pmt.cons(pmt.PMT_NIL, pmt.init_u8vector(len(scram), scram)))
+
+        #print len(scram), scram

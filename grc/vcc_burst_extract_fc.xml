@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<block>
+  <name>burst_extract_fc</name>
+  <key>vcc_burst_extract_fc</key>
+  <category>[vcc]</category>
+  <import>import vcc</import>
+  <make>vcc.burst_extract_fc(len_tag=$len_tag, mult=$mult)</make>
+  <callback>set_len_tag($len_tag)</callback>
+  <param>
+    <name>Length Tag</name>
+    <key>len_tag</key>
+    <value>"packet_len"</value>
+    <type>string</type>
+  </param>
+  <param>
+    <name>Multiplier</name>
+    <key>mult</key>
+    <value>1</value>
+    <type>int</type>
+  </param>
+  <sink>
+    <name>in</name>
+    <type>complex</type>
+  </sink>
+  <source>
+    <name>out</name>
+    <type>complex</type>
+  </source>
+</block>

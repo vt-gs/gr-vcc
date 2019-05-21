@@ -24,5 +24,8 @@ install(FILES
     vcc_burst_cfo_est_gmsk.xml
     vcc_hdlc_deframer2.xml
     vcc_trigger_timestamp_pdu.xml
-    vcc_vstp_aggregator_simple.xml DESTINATION share/gnuradio/grc/blocks
+    vcc_vstp_aggregator_simple.xml
+    vcc_burst_extract_fc.xml
+    vcc_burst_scramble_bb.xml
+    vcc_burst_nrzi_encode.xml DESTINATION share/gnuradio/grc/blocks
 )

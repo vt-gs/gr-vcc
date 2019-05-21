@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<block>
+  <name>Burst NRZI Encoder</name>
+  <key>vcc_burst_nrzi_encode</key>
+  <category>[vcc]</category>
+  <import>import vcc</import>
+  <make>vcc.burst_nrzi_encode()</make>
+  <sink>
+    <name>in</name>
+    <type>message</type>
+    <optional>1</optional>
+  </sink>
+  <source>
+    <name>out</name>
+    <type>message</type>
+    <optional>1</optional>
+  </source>
+</block>
