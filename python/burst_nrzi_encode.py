@@ -59,4 +59,4 @@ class burst_nrzi_encode(gr.sync_block):
         self.message_port_pub(pmt.intern('out'), pmt.cons(pmt.PMT_NIL, pmt.init_u8vector(len(enc), enc)))
         #self.message_port_pub(pmt.intern('out'), pmt.cons(pmt.PMT_NIL, pmt.init_f32vector(len(enc), enc)))
 
-        print len(enc)
+        #print len(enc)

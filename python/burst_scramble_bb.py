@@ -53,7 +53,7 @@ class burst_scramble_bb(gr.sync_block):
             return
         data = list(pmt.u8vector_elements(msg))
         scram = []
-        print len(data)
+        #print len(data)
         for bit in data:
             scram.append(self.lfsr.next_bit_scramble(bit))
         self.message_port_pub(pmt.intern('out'), pmt.cons(pmt.PMT_NIL, pmt.init_u8vector(len(scram), scram)))
