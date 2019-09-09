@@ -27,5 +27,6 @@ install(FILES
     vcc_vstp_aggregator_simple.xml
     vcc_burst_extract_fc.xml
     vcc_burst_scramble_bb.xml
-    vcc_burst_nrzi_encode.xml DESTINATION share/gnuradio/grc/blocks
+    vcc_burst_nrzi_encode.xml
+    vcc_es_tag_to_utc.xml DESTINATION share/gnuradio/grc/blocks
 )

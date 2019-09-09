@@ -43,7 +43,8 @@ GR_PYTHON_INSTALL(
     vstp_aggregator_simple.py
     burst_extract_fc.py
     burst_scramble_bb.py
-    burst_nrzi_encode.py DESTINATION ${GR_PYTHON_DIR}/vcc
+    burst_nrzi_encode.py
+    es_tag_to_utc.py DESTINATION ${GR_PYTHON_DIR}/vcc
 )
 
 ########################################################################
