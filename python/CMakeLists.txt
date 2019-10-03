@@ -45,7 +45,8 @@ GR_PYTHON_INSTALL(
     burst_scramble_bb.py
     burst_nrzi_encode.py
     es_tag_to_utc.py
-    insert_src_callsign_pdu.py DESTINATION ${GR_PYTHON_DIR}/vcc
+    insert_src_callsign_pdu.py
+    insert_time_tag_bb.py DESTINATION ${GR_PYTHON_DIR}/vcc
 )
 
 ########################################################################

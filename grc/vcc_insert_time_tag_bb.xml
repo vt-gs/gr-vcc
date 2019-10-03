@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<block>
+  <name>Insert datetime timestamp Tag</name>
+  <key>vcc_insert_time_tag_bb</key>
+  <category>[vcc]</category>
+  <import>import vcc</import>
+  <make>vcc.insert_time_tag_bb($dt_key, $trig_key)</make>
+  <param>
+    <name>Datetime Key</name>
+    <key>dt_key</key>
+    <value>core:datetime</value>
+    <type>string</type>
+  </param>
+  <param>
+    <name>Trigger Key</name>
+    <key>trig_key</key>
+    <value>packet_len</value>
+    <type>string</type>
+  </param>
+  <sink>
+    <name>in</name>
+    <type>byte</type>
+  </sink>
+  <source>
+    <name>out</name>
+    <type>byte</type>
+  </source>
+</block>
