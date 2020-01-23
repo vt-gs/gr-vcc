@@ -52,7 +52,8 @@ class meta_to_json(gr.sync_block):
         msg = pmt.to_python(pmt.cdr(pdu))
         #print type(meta), meta
         meta['msg_hex'] = binascii.hexlify(msg)
-        metaj = json.dumps(meta, sort_keys=True, indent=4, separators=(',', ': '));
+        #metaj = json.dumps(meta, sort_keys=True, indent=4, separators=(',', ': '));
+        metaj = json.dumps(meta);
         #print binascii.hexlify(msg), metaj
         #Create new PDU and emit
         vector = pmt.init_u8vector(len(metaj)+1, bytearray(metaj +'\n'))
