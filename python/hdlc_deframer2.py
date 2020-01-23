@@ -34,8 +34,9 @@ from gnuradio import gr
 import collections
 import pmt
 import array
-
 import hdlc
+import datetime
+import binascii
 
 def pack(s):
     d = bytearray()
@@ -65,17 +66,41 @@ class hdlc_deframer2(gr.sync_block):
         self.bits = collections.deque(maxlen = (max_length+2)*8 + 7)
         self.ones = 0 # consecutive ones for flag checking
         self.check = check_fcs
+        #self.meta_tags = ['datetime', 'snr', 'cfo_est', 'rx_freq']
 
-        self.message_port_register_out(pmt.intern('out'))
+        #self.key_map = {
+        #    'datetime':'datetime',
+        #    'cfo_est':'frequency_offset',
+        #    'rx_freq':'center_frequency',
+        #    'snr':'snr'
+        #}
+        self.meta = {}
+
+        self.message_port_register_out(pmt.intern('ax25'))
+        #self.message_port_register_out(pmt.intern('satmf'))
 
 
     def work(self, input_items, output_items):
         in0 = input_items[0]
-        tags = self.get_tags_in_range(0, 0, len(in0))
-        print len(in0), tags
-        for t in tags:
-            t_str = pmt.symbol_to_string(t.key)
-            print t_str
+        tags = self.get_tags_in_window(0, 0, len(in0))
+        #print len(tags)
+        print "-----------------------------------------------------"
+        print datetime.datetime.utcnow(), len(in0)
+        #self.meta = {}
+        if len(tags) > 0:
+            for t in tags:
+                t_key = pmt.symbol_to_string(t.key)
+                t_val = pmt.to_python(t.value)
+                self.meta[t_key] = t_val
+
+                #if t_key in self.key_map.keys():
+                    #if t_key =='rx_freq':
+                    #    self.meta[self.key_map[t_key]] = pmt.to_python(t.value)[1]
+                    #else:
+                        #self.meta[self.key_map[t_key]] = pmt.to_python(t.value)
+
+            print self.meta, '\n'
+
         for x in in0:
             if x:
                 self.ones += 1
@@ -95,9 +120,18 @@ class hdlc_deframer2(gr.sync_block):
                     frame = pack(self.bits)
                     self.bits.clear()
                     if frame and (not self.check or fcs_ok(frame)):
+
                         # send frame
+                        print "_________DECODE_______________"
                         buff = array.array('B', frame[:-2]) # trim fcs
-                        self.message_port_pub(pmt.intern('out'), pmt.cons(pmt.PMT_NIL, pmt.init_u8vector(len(buff), buff)))
+                        self.meta['raw']=binascii.hexlify(buff)
+                        cpdu = pmt.cons(pmt.to_pmt(self.meta),  pmt.init_u8vector(len(buff), buff))
+                        self.message_port_pub(pmt.intern('ax25'), cpdu)
+                        self.meta = {} #reset metadata
+                        #self.message_port_pub(pmt.intern('ax25'), pmt.cons(pmt.PMT_NIL, pmt.init_u8vector(len(buff), buff)))
+
+                        #print self.meta
+
                 else:
                     self.bits.append(x)
                 self.ones = 0

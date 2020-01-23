@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<block>
+  <name>ES Time Stamp Generator</name>
+  <key>vcc_es_tag_to_utc</key>
+  <category>[vcc]</category>
+  <import>import vcc</import>
+  <make>vcc.es_tag_to_utc($samp_rate)</make>
+  <param>
+      <name>Sample Rate</name>
+      <key>samp_rate</key>
+      <value>samp_rate</value>
+      <type>float</type>
+  </param>
+
+  <sink>
+      <name>in</name>
+      <type>message</type>
+      <optional>1</optional>
+  </sink>
+
+  <source>
+      <name>out</name>
+      <type>message</type>
+      <optional>1</optional>
+  </source>
+</block>

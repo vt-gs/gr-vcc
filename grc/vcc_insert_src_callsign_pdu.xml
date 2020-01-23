@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<block>
+  <name>Insert Source Callsign</name>
+  <key>vcc_insert_src_callsign_pdu</key>
+  <category>[vcc]</category>
+  <import>import vcc</import>
+  <make>vcc.insert_src_callsign_pdu(callsign=$callsign,ssid=$ssid, verbose=$verbose)</make>
+  <callback>set_callsign($callsign)</callback>
+  <callback>set_ssid($ssid)</callback>
+  <callback>set_verbose($verbose)</callback>
+  <param>
+    <name>Callsign</name>
+    <key>callsign</key>
+    <value>WJ2XMS</value>
+    <type>string</type>
+  </param>
+  <param>
+    <name>SSID</name>
+    <key>ssid</key>
+    <value>0</value>
+    <type>int</type>
+  </param>
+  <param>
+    <name>Print Verbose</name>
+    <key>verbose</key>
+    <value>True</value>
+    <type>bool</type>
+    <option>
+      <name>True</name>
+      <key>True</key>
+    </option>
+    <option>
+      <name>False</name>
+      <key>False</key>
+    </option>
+  </param>
+  <sink>
+    <name>in</name>
+    <type>message</type>
+    <optional>1</optional>
+  </sink>
+  <source>
+    <name>out</name>
+    <type>message</type>
+    <optional>1</optional>
+  </source>
+</block>
